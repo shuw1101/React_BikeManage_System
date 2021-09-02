@@ -4,7 +4,7 @@ The welcome page of the system:
 
 ![Alt text](https://github.com/Arella1101/React_BikeManage_System/blob/master/bike_system_project/demo/%E9%A6%96%E9%A1%B5.png)
 
-The mapping location page：
+The bike locations on the map：
 
 ![Alt text](https://github.com/Arella1101/React_BikeManage_System/blob/master/bike_system_project/demo/%E5%9C%B0%E5%9B%BE.png)
 
