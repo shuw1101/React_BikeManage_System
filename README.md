@@ -1,4 +1,4 @@
-This is a front-end project based on React.JS. I write it for personal learning. It's a bike administration system, using Baidu Map API.
+This is a front-end project based on ReactJS. I write it for personal learning. It's a bike administration system, with Map APIs requested.
 
 The login page of the system:
 
