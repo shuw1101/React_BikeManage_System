@@ -1,6 +1,6 @@
 This is a front-end project based on ReactJS. I write it for personal learning. It's a bike administration system, with Map APIs requested.
 
-The login page of the system:
+The welcome page of the system:
 
 ![Alt text](https://github.com/Arella1101/React_BikeManage_System/blob/master/bike_system_project/demo/%E9%A6%96%E9%A1%B5.png)
 
