@@ -20,7 +20,7 @@ export default class Header extends React.Component{
    }
 
    getWeatherAPIData(){
-    let city = '上海';
+    let city = 'Shanghai';
     axios.jsonp({
         url:'http://api.map.baidu.com/telematics/v3/weather?location='+encodeURIComponent(city)+'&output=json&ak=3p49MVra6urFRGOT9s8UBWr2'
     }).then((res)=>{
@@ -39,13 +39,13 @@ export default class Header extends React.Component{
             <div className="header">
                 <Row className="header-top">
                     <Col span="24">
-                       <span>欢迎，{this.state.userName}</span>
-                        <a href="#">退出</a>
+                       <span>Welcome，{this.state.userName}</span>
+                        <a href="#">Log out</a>
                     </Col>
                 </Row>
                 <Row className="breadcrumb">
                     <Col span="4" className="breadcrumb-title">
-                        首页                   
+                        Home                   
                     </Col>
                     <Col span="20" className="weather">
 

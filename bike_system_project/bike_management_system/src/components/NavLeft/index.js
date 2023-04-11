@@ -11,7 +11,6 @@ export default class NavLeft extends React.Component{
         // if (key == this.state.currentKey) {
         //     return false;
         // }
-        // // 事件派发，自动调用reducer，通过reducer保存到store对象中
         // const { dispatch } = this.props;
         // dispatch(switchMenu(item.props.title));
 

@@ -17,7 +17,7 @@ export default class City extends React.Component{
         this.requestList();
     }
 
-    // 默认请求我们的接口数据
+   
     requestList = ()=>{
         let _this = this;
         axios.ajax({
@@ -42,13 +42,13 @@ export default class City extends React.Component{
         })
     }
 
-    // 开通城市
+    
     handleOpenCity = ()=>{
         this.setState({
             isShowOpenCity:true
         })
     }
-    // 城市开通提交
+   
     handleSubmit = values=>{
         let cityInfo = values;
         // console.log(cityInfo);

@@ -94,8 +94,8 @@ class FilterForm extends React.Component{
             <Form layout="inline">
                 { this.initFormList() }
                 <FormItem onFinish={this.handleFilterSubmit}>
-                    <Button type="primary" style={{ margin: '0 20px' }} onClick={this.handleFilterSubmit}>查询</Button>
-                    <Button onClick={this.reset}>重置</Button>
+                    <Button type="primary" style={{ margin: '0 20px' }} onClick={this.handleFilterSubmit}>search</Button>
+                    <Button onClick={this.reset}>Reset</Button>
                 </FormItem>
             </Form>
         );
