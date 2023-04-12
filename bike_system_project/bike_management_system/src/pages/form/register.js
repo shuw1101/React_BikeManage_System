@@ -62,7 +62,7 @@ class FormRegister extends React.Component{
         }
         return (
             <div style={{width:'100%'}}>
-                <Card title="注册表单">
+                <Card title="register form">
                     <Form layout="horizontal" onFinish={this. handleSubmit}>
                         <FormItem 
 
@@ -71,19 +71,19 @@ class FormRegister extends React.Component{
                         rules={[
                             {
                                 required:true,
-                                message:'用户名不能为空'
+                                message:'Username cannot be null.'
                             },
                             {
                                 min:5,max:10,
-                                message:'长度不在范围内'
+                                message:'Username length is not in valid range.'
                             },
                             {
                                 pattern:new RegExp('^\\w+$','g'),
-                                message:'用户名必须为字母或者数字'
+                                message:'Username must be either letters or digits.'
                             }
                         ]}
                          {...formItemLayout} >
-                        <Input placeholder="请输入用户名" />
+                        <Input placeholder="Please enter the username" />
 
 
                         </FormItem>
@@ -93,7 +93,7 @@ class FormRegister extends React.Component{
                             rules={[]}
                             {...formItemLayout} 
                         >
-                        <Input type="password" placeholder="请输入密码" />                   
+                        <Input type="password" placeholder="Please enter the password" />                   
                         </FormItem>
 
                         <FormItem 
@@ -106,8 +106,8 @@ class FormRegister extends React.Component{
                         
                         >
                         <RadioGroup>
-                            <Radio value="1">男</Radio>
-                            <Radio value="2">女</Radio>
+                            <Radio value="1">Male</Radio>
+                            <Radio value="2">Female</Radio>
                         </RadioGroup>
                         </FormItem>
 
@@ -146,14 +146,14 @@ class FormRegister extends React.Component{
                             {...formItemLayout} 
                         >
                             <Select mode="multiple">
-                                <Option value="1">游泳</Option>
-                                <Option value="2">打篮球</Option>
-                                <Option value="3">踢足球</Option>
-                                <Option value="4">跑步</Option>
-                                <Option value="5">爬山</Option>
-                                <Option value="6">骑行</Option>
-                                <Option value="7">桌球</Option>
-                                <Option value="8">麦霸</Option>
+                                <Option value="1">fashion</Option>
+                                <Option value="2">sports</Option>
+                                <Option value="3">economy</Option>
+                                <Option value="4">movie</Option>
+                                <Option value="5">pet</Option>
+                                <Option value="6">science</Option>
+                                <Option value="7">books</Option>
+                                <Option value="8">cook</Option>
                             </Select>
                         </FormItem>
 
@@ -220,10 +220,10 @@ class FormRegister extends React.Component{
                         <FormItem 
                             {...offsetLayout}
                         >
-                            <Checkbox>我已阅读过<a href="#">React协议</a></Checkbox>
+                            <Checkbox>I have read<a href="#">the agreement</a></Checkbox>
                         </FormItem>
                         <FormItem {...offsetLayout}>
-                            <Button type="primary" onClick={this.handleSubmit}>注册</Button>
+                            <Button type="primary" onClick={this.handleSubmit}>register</Button>
                         </FormItem>
                     </Form>
                 </Card>

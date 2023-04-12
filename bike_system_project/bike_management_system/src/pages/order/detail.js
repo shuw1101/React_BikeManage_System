@@ -33,23 +33,23 @@ export default class Order extends React.Component {
 
     renderMap = (result)=>{
         this.map = new window.BMap.Map('orderDetailMap');
-        // this.map.centerAndZoom('北京',11);
-        // 添加地图控件
+        // this.map.centerAndZoom('Beijing',11);
+    
         this.addMapControl();
-        // 调用路线图绘制方法
+       
         this.drawBikeRoute(result.position_list);
-        // 调用服务区绘制方法
+       
         this.drwaServiceArea(result.area);
     }
 
-    // 添加地图控件
+    
     addMapControl = ()=>{
         let map = this.map;
         map.addControl(new window.BMap.ScaleControl({ anchor: window.BMAP_ANCHOR_TOP_RIGHT}));
         map.addControl(new window.BMap.NavigationControl({ anchor: window.BMAP_ANCHOR_TOP_RIGHT }));
     }
 
-    // 绘制用户的行驶路线
+    
     drawBikeRoute = (positionList)=>{
         let map = this.map;
         let startPoint = '';
@@ -74,7 +74,7 @@ export default class Order extends React.Component {
             let endMarker = new window.BMap.Marker(endPoint, { icon: endIcon });
             this.map.addOverlay(endMarker);
 
-            // 连接路线图
+           
             let trackPoint = [];
             for(let i=0;i<positionList.length;i++){
                 let point = positionList[i];
@@ -92,15 +92,15 @@ export default class Order extends React.Component {
         
     }
 
-    // 绘制服务区
+   
     drwaServiceArea = (positionList)=>{
-        // 连接路线图
+        
         let trackPoint = [];
         for (let i = 0; i < positionList.length; i++) {
             let point = positionList[i];
             trackPoint.push(new window.BMap.Point(point.lon, point.lat));
         }
-        // 绘制服务区
+        
         let polygon = new window.BMap.Polygon(trackPoint, {
             strokeColor: '#CE0000',
             strokeWeight: 4,
@@ -118,43 +118,43 @@ export default class Order extends React.Component {
                 <Card>
                     <div id="orderDetailMap" className="order-map"></div>
                     <div className="detail-items">
-                        <div className="item-title">基础信息</div>
+                        <div className="item-title">Basic Information</div>
                         <ul className="detail-form">
                             <li>
-                                <div className="detail-form-left">用车模式</div>
-                                <div className="detail-form-content">{info.mode == 1 ?'服务区':'停车点'}</div>
+                                <div className="detail-form-left">Bike Mode</div>
+                                <div className="detail-form-content">{info.mode == 1 ?'Service Region':'Parking Lot'}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">订单编号</div>
+                                <div className="detail-form-left">Order ID</div>
                                 <div className="detail-form-content">{info.order_sn}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">车辆编号</div>
+                                <div className="detail-form-left">Bike ID</div>
                                 <div className="detail-form-content">{info.bike_sn}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">用户姓名</div>
+                                <div className="detail-form-left">Username</div>
                                 <div className="detail-form-content">{info.user_name}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">手机号码</div>
+                                <div className="detail-form-left">Phone number</div>
                                 <div className="detail-form-content">{info.mobile}</div>
                             </li>
                         </ul>
                     </div>
                     <div className="detail-items">
-                        <div className="item-title">行驶轨迹</div>
+                        <div className="item-title">trajectory</div>
                         <ul className="detail-form">
                             <li>
-                                <div className="detail-form-left">行程起点</div>
+                                <div className="detail-form-left">starting position</div>
                                 <div className="detail-form-content">{info.start_location}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">行程终点</div>
+                                <div className="detail-form-left">ending position</div>
                                 <div className="detail-form-content">{info.end_location}</div>
                             </li>
                             <li>
-                                <div className="detail-form-left">行驶里程</div>
+                                <div className="detail-form-left">distance</div>
                                 <div className="detail-form-content">{info.distance/1000}公里</div>
                             </li>
                         </ul>

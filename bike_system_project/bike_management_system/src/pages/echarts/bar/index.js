@@ -3,11 +3,9 @@ import { Card } from 'antd'
 import ReactEcharts from 'echarts-for-react';
 import echartTheme from '../echartTheme'
 // import echarts from 'echarts'
-// 引入 ECharts 主模块
+
 import echarts from 'echarts/lib/echarts'
-// 引入饼图和折线图
 import 'echarts/lib/chart/bar'
-// 引入提示框和标题组件
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 import 'echarts/lib/component/legend';
@@ -23,20 +21,20 @@ export default class Bar extends React.Component {
     getOption(){
         let option = {
             title: {
-                text: '用户骑行订单'
+                text: 'User Bike Rental Orders Over Time'
             },
             tooltip : {
                 trigger: 'axis'
             },
             xAxis: {
                 data: [
-                    '周一',
-                    '周二',
-                    '周三',
-                    '周四',
-                    '周五',
-                    '周六',
-                    '周日'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursay',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
             },
             yAxis: {
@@ -44,16 +42,16 @@ export default class Bar extends React.Component {
             },
             series: [
                 {
-                    name: '订单量',
+                    name: 'Order Quantity',
                     type: 'bar',
                     data: [
-                        1000,
-                        2000,
-                        1500,
-                        3000,
-                        2000,
-                        1200,
-                        800
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday',
+                        'Thursay',
+                        'Friday',
+                        'Saturday',
+                        'Sunday'
                     ]
                 }
             ]
@@ -64,23 +62,23 @@ export default class Bar extends React.Component {
     getOption2(){
         let option = {
             title: {
-                text: '用户骑行订单'
+                text: 'User Bike Rental Orders Over Time'
             },
             tooltip : {
                 trigger: 'axis'
             },
             legend:{
-                data:['OFO','摩拜','小蓝']
+                data:['OFO','Mobai','Lan']
             },
             xAxis: {
                 data: [
-                    '周一',
-                    '周二',
-                    '周三',
-                    '周四',
-                    '周五',
-                    '周六',
-                    '周日'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursay',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
             },
             yAxis: {
@@ -101,7 +99,7 @@ export default class Bar extends React.Component {
                     ]
                 },
                 {
-                    name: '摩拜',
+                    name: 'Mobai',
                     type: 'bar',
                     data: [
                         1500,
@@ -114,7 +112,7 @@ export default class Bar extends React.Component {
                     ]
                 },
                 {
-                    name: '小蓝',
+                    name: 'Lan',
                     type: 'bar',
                     data: [
                         1000,
@@ -134,10 +132,10 @@ export default class Bar extends React.Component {
     render(){
         return (
             <div style={{width:'100%'}}>
-                <Card title="柱形图表之一">
+                <Card title="bar chart1">
                     <ReactEcharts option={this.getOption()} theme="Imooc" notMerge={true} lazyUpdate={true} style={{ height: 500 }} />
                 </Card>
-                <Card title="柱形图表之二" style={{marginTop:10}}>
+                <Card title="bar chart2" style={{marginTop:10}}>
                     <ReactEcharts option={this.getOption2()} theme="Imooc" notMerge={true} lazyUpdate={true} style={{ height: 500 }} />
                 </Card>
             </div> 

@@ -54,7 +54,7 @@ export default class BasicTable extends React.Component{
         this.request();
     }
 
-    动态获取mock数据
+    
     request = ()=>{
         let _this = this;
         axios.ajax({
@@ -94,7 +94,6 @@ export default class BasicTable extends React.Component{
         })
     }
 
-    // 多选执行删除动作
     handleDelete = (()=>{
         let rows = this.state.selectedRows;
         let ids = [];

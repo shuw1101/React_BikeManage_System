@@ -16,24 +16,24 @@ export default class Order extends React.Component{
     formList = [
         {
             type:'SELECT',
-            label:'城市',
+            label:'City',
             field:'city',
-            placeholder:'全部',
+            placeholder:'All',
             initialValue:'1',
             width:80,
-            list: [{ id: '0', name: '全部' }, { id: '1', name: '北京' }, { id: '2', name: '天津' }, { id: '3', name: '上海' }]
+            list: [{ id: '0', name: 'All' }, { id: '1', name: 'Beijing' }, { id: '2', name: 'Tianjin' }, { id: '3', name: 'Shanghai' }]
         },
         {
-            type: '时间查询'
+            type: 'Select time'
         },
         {
             type: 'SELECT',
-            label: '订单状态',
+            label: 'Order status',
             field:'order_status',
-            placeholder: '全部',
+            placeholder: 'All',
             initialValue: '1',
             width: 80,
-            list: [{ id: '0', name: '全部' }, { id: '1', name: '进行中' }, { id: '2', name: '结束行程' }]
+            list: [{ id: '0', name: 'All' }, { id: '1', name: 'in-progress' }, { id: '2', name: 'completed' }]
         }
     ]
     componentDidMount(){
@@ -65,13 +65,13 @@ export default class Order extends React.Component{
             })
         })
     }
-    // 订单结束确认
+    // confirm the order ending
     handleConfirm = ()=>{
         let item = this.state.selectedItem;
         if (!item) {
             Modal.info({
-                title: '信息',
-                content: '请选择一条订单进行结束'
+                title: 'information',
+                content: 'Please select an order to end.'
             })
             return;
         }
@@ -92,7 +92,7 @@ export default class Order extends React.Component{
         })
     }
 
-    // 结束订单
+    // end the order
     handleFinishOrder = ()=>{
         let item = this.state.selectedItem;
         axios.ajax({
@@ -104,7 +104,7 @@ export default class Order extends React.Component{
             }
         }).then((res) => {
             if (res.code == 0) {
-                message.success('订单结束成功')
+                message.success('Order is ended.')
                 this.setState({
                     orderConfirmVisble: false
                 })
@@ -125,8 +125,8 @@ export default class Order extends React.Component{
         let item = this.state.selectedItem;
         if (!item) {
             Modal.info({
-                title: '信息',
-                content: '请先选择一条订单'
+                title: 'information',
+                content: 'Please select an order to end.'
             })
             return;
         }
@@ -135,50 +135,50 @@ export default class Order extends React.Component{
     render(){
         const columns = [
             {
-                title:'订单编号',
+                title:'Order ID',
                 dataIndex:'order_sn'
             },
             {
-                title: '车辆编号',
+                title: 'Bike ID',
                 dataIndex: 'bike_sn'
             },
             {
-                title: '用户名',
+                title: 'Username',
                 dataIndex: 'user_name'
             },
             {
-                title: '手机号',
+                title: 'Phone number',
                 dataIndex: 'mobile'
             },
             {
-                title: '里程',
+                title: 'Distance',
                 dataIndex: 'distance',
                 render(distance){
                     return distance/1000 + 'Km';
                 }
             },
             {
-                title: '行驶时长',
+                title: 'Period',
                 dataIndex: 'total_time'
             },
             {
-                title: '状态',
+                title: 'Status',
                 dataIndex: 'status'
             },
             {
-                title: '开始时间',
+                title: 'Starting time',
                 dataIndex: 'start_time'
             },
             {
-                title: '结束时间',
+                title: 'Ending time',
                 dataIndex: 'end_time'
             },
             {
-                title: '订单金额',
+                title: 'Order Amount',
                 dataIndex: 'total_fee'
             },
             {
-                title: '实付金额',
+                title: 'Paid Amount',
                 dataIndex: 'user_pay'
             }
         ]
@@ -225,7 +225,7 @@ export default class Order extends React.Component{
                     />
                 </div>
                 <Modal
-                    title="结束订单"
+                    title="End the Order"
                     visible={this.state.orderConfirmVisble}
                     onCancel={()=>{
                         this.setState({
@@ -236,16 +236,16 @@ export default class Order extends React.Component{
                     width={600}
                 >
                     <Form layout="horizontal">
-                        <FormItem label="车辆编号" {...formItemLayout}>
+                        <FormItem label="Bike ID" {...formItemLayout}>
                             {this.state.orderInfo.bike_sn}
                         </FormItem>
-                        <FormItem label="剩余电量" {...formItemLayout}>
+                        <FormItem label="Remaining battery capacity" {...formItemLayout}>
                             {this.state.orderInfo.battery + '%'}
                         </FormItem>
-                        <FormItem label="行程开始时间" {...formItemLayout}>
+                        <FormItem label="Starting time" {...formItemLayout}>
                             {this.state.orderInfo.start_time}
                         </FormItem>
-                        <FormItem label="当前位置" {...formItemLayout}>
+                        <FormItem label="Current location" {...formItemLayout}>
                             {this.state.orderInfo.location}
                         </FormItem>
                     </Form>

@@ -34,14 +34,14 @@ export default class Permission extends React.Component{
         })
     }
 
-    // 角色创建
+    // create a role
     handleRole = ()=>{
         this.setState({
             isRoleVisible:true
         })
     }
 
-    // 角色提交
+    // submit a role
     handleRoleSubmit = ()=>{
         let data = this.roleForm.props.form.getFieldsValue();
         axios.ajax({
@@ -64,8 +64,8 @@ export default class Permission extends React.Component{
     handlePermission = ()=>{
         if (!this.state.selectedItem) {
             Modal.info({
-                title: '信息',
-                content: '请选择一个角色'
+                title: 'info',
+                content: 'Select the role type'
             })
             return;
         }
@@ -100,12 +100,12 @@ export default class Permission extends React.Component{
         })
     }
 
-    // 用户授权
+    
     handleUserAuth = ()=>{
         if (!this.state.selectedItem) {
             Modal.info({
-                title: '信息',
-                content: '未选中任何项目'
+                title: 'info',
+                content: 'not select any intem'
             })
             return;
         }
@@ -130,7 +130,7 @@ export default class Permission extends React.Component{
             }
         })
     }
-    // 筛选目标用户
+   
     getAuthUserList = (dataSource) => {
         const mockData = [];
         const targetKeys = [];
@@ -156,7 +156,7 @@ export default class Permission extends React.Component{
         });
     };
 
-    // 用户授权提交
+    
     handleUserSubmit = ()=>{
         let data = {};
         data.user_ids = this.state.targetKeys || [];
@@ -180,40 +180,40 @@ export default class Permission extends React.Component{
     render(){
         const columns = [
             {
-                title: '角色ID',
+                title: 'Admin ID',
                 dataIndex: 'id'
             }, {
-                title: '角色名称',
+                title: 'Admin Name',
                 dataIndex: 'role_name'
             },{
-                title: '创建时间',
+                title: 'Create Time',
                 dataIndex: 'create_time',
                 render: Utils.formatTime
             }, {
-                title: '使用状态',
+                title: 'Status',
                 dataIndex: 'status',
                 render(status){
                     if (status == 1) {
-                        return "启用"
+                        return "Valid"
                     } else {
-                        return "停用"
+                        return "Invalid"
                     }
                 }
             }, {
-                title: '授权时间',
+                title: 'Authorize Time',
                 dataIndex: 'authorize_time',
                 render: Utils.formatTime
             }, {
-                title: '授权人',
+                title: 'Authorize Person',
                 dataIndex: 'authorize_user_name',
             }
         ];
         return (
             <div style={{width:'100%'}}>
                 <Card>
-                    <Button type="primary" onClick={this.handleRole}>创建角色</Button>
-                    <Button type="primary" onClick={this.handlePermission}>设置权限</Button>
-                    <Button type="primary" onClick={this.handleUserAuth}>用户授权</Button>
+                    <Button type="primary" onClick={this.handleRole}>Create Role</Button>
+                    <Button type="primary" onClick={this.handlePermission}>Configure Permissions </Button>
+                    <Button type="primary" onClick={this.handleUserAuth}>Authentication</Button>
                 </Card>           
                 <div className="content-wrap">
                     <ETable
@@ -224,7 +224,7 @@ export default class Permission extends React.Component{
                     />
                 </div>
                 <Modal
-                    title="创建角色"
+                    title="Create Role"
                     visible={this.state.isRoleVisible}
                     onOk={this.handleRoleSubmit}
                     onCancel={()=>{
@@ -237,7 +237,7 @@ export default class Permission extends React.Component{
                     <RoleForm wrappedComponentRef={(inst) => this.roleForm = inst }/>
                 </Modal>
                 <Modal
-                       title="权限设置"
+                       title="Configure Permissions"
                        visible={this.state.isPermVisible}
                        width={600}
                        onOk={this.handlePermEditSubmit}
@@ -258,7 +258,7 @@ export default class Permission extends React.Component{
                         />
                 </Modal>
                 <Modal
-                       title="用户授权"
+                       title="Authenticate Users"
                        visible={this.state.isUserVisible}
                        width={800}
                        onOk={this.handleUserSubmit}
@@ -292,19 +292,19 @@ class RoleForm extends React.Component{
         };
         return (
             <Form layout="horizontal" >
-                <FormItem label="角色名称" {...formItemLayout} name="role_name" initialValue=''>
+                <FormItem label="role name" {...formItemLayout} name="role_name" initialValue=''>
                     {
                         (
-                            <Input type="text" placeholder="请输入角色名称"/>
+                            <Input type="text" placeholder="Please enter role name"/>
                         )
                     }
                 </FormItem>
-                <FormItem label="状态" {...formItemLayout} name="state" initialValue='1'>
+                <FormItem label="status" {...formItemLayout} name="state" initialValue='1'>
                     {
                        (
                         <Select>
-                            <Option value={1}>开启</Option>
-                            <Option value={0}>关闭</Option>
+                            <Option value={1}>Open</Option>
+                            <Option value={0}>Close</Option>
                         </Select>
                     )}
                 </FormItem>
@@ -313,10 +313,10 @@ class RoleForm extends React.Component{
     }
 }
 
-// 设置权限
+
 class PermEditForm extends React.Component {
     state = {};
-    // 设置选中的节点，通过父组件方法再传递回来
+    
     onCheck = (checkedKeys) => {
         this.props.patchMenuInfo(checkedKeys);
     };
@@ -359,16 +359,16 @@ class PermEditForm extends React.Component {
         const menuInfo = this.props.menuInfo;
         return (
             <Form layout="horizontal">
-                <FormItem label="角色名称：" {...formItemLayout}>
+                <FormItem label="role name：" {...formItemLayout}>
                     <Input disabled maxLength="8" placeholder={detail_info.role_name}/>
                 </FormItem>
-                <FormItem label="状态：" {...formItemLayout} initialValue='1'>
+                <FormItem label="status：" {...formItemLayout} initialValue='1'>
                     {(
                         <Select style={{ width: 80}}
-                                placeholder="启用"
+                                placeholder="open"
                         >
-                            <Option value="1">启用</Option>
-                            <Option value="0">停用</Option>
+                            <Option value="1">open</Option>
+                            <Option value="0">close</Option>
                         </Select>
                     )}
                 </FormItem>
@@ -378,7 +378,7 @@ class PermEditForm extends React.Component {
                     onCheck={(checkedKeys)=>this.onCheck(checkedKeys)}
                     checkedKeys={menuInfo ||[]}
                 >
-                    <TreeNode title="平台权限" key="platform_all">
+                    <TreeNode title="permissions" key="platform_all">
                         {this.renderTreeNodes(menuConfig)}
                     </TreeNode>
                 </Tree>
@@ -389,7 +389,7 @@ class PermEditForm extends React.Component {
 
 
 
-// 用户授权
+
 class RoleAuthForm extends React.Component {
 
     filterOption = (inputValue, option) => {
@@ -407,16 +407,16 @@ class RoleAuthForm extends React.Component {
         const detail_info = this.props.detailInfo;
         return (
             <Form layout="horizontal">
-                <FormItem label="角色名称：" {...formItemLayout}>
+                <FormItem label="role name：" {...formItemLayout}>
                     <Input disabled maxLength={8} placeholder={detail_info.role_name}/>
                 </FormItem>
-                <FormItem label="选择用户：" {...formItemLayout}>
+                <FormItem label="Select Users：" {...formItemLayout}>
                     <Transfer
                         listStyle={{width: 200,height: 400}}
                         dataSource={this.props.mockData}
                         showSearch
-                        titles={['待选用户', '已选用户']}
-                        searchPlaceholder='输入用户名'
+                        titles={['Unselected Users', 'Selected Users']}
+                        searchPlaceholder='Please enter the username'
                         filterOption={this.filterOption}
                         targetKeys={this.props.targetKeys}
                         onChange={this.handleChange}

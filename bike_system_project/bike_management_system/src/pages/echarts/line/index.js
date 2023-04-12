@@ -4,9 +4,7 @@ import ReactEcharts from 'echarts-for-react';
 import echartTheme from '../echartTheme'
 // import echarts from 'echarts'
 import echarts from 'echarts/lib/echarts'
-// 引入饼图和折线图
 import 'echarts/lib/chart/line'
-// 引入提示框和标题组件
 import 'echarts/lib/component/tooltip';
 import 'echarts/lib/component/title';
 import 'echarts/lib/component/legend';
@@ -22,20 +20,20 @@ export default class Line extends React.Component {
     getOption() {
         let option = {
             title: {
-                text: '用户骑行订单'
+                text: 'User Bike Rental Orders Over Time'
             },
             tooltip: {
                 trigger: 'axis'
             },
             xAxis: {
                 data: [
-                    '周一',
-                    '周二',
-                    '周三',
-                    '周四',
-                    '周五',
-                    '周六',
-                    '周日'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursay',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
             },
             yAxis: {
@@ -43,7 +41,7 @@ export default class Line extends React.Component {
             },
             series: [
                 {
-                    name: '订单量',
+                    name: 'Order Quantity',
                     type: 'line',
                     data: [
                         1000,
@@ -63,23 +61,23 @@ export default class Line extends React.Component {
     getOption2() {
         let option = {
             title: {
-                text: '用户骑行订单'
+                text: 'User Bike Rental Orders Over Time'
             },
             tooltip: {
                 trigger: 'axis'
             },
             legend:{
-                data:['OFO订单量','摩拜订单量']
+                data:['OFO Order Quantity','Mobai Order Quantity']
             },
             xAxis: {
                 data: [
-                    '周一',
-                    '周二',
-                    '周三',
-                    '周四',
-                    '周五',
-                    '周六',
-                    '周日'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursay',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
             },
             yAxis: {
@@ -87,9 +85,9 @@ export default class Line extends React.Component {
             },
             series: [
                 {
-                    name: 'OFO订单量',
+                    name: 'OFOOrder Quantity',
                     type: 'line',
-                    stack: '总量',
+                    stack: 'Total Amount',
                     data: [
                         1200,
                         3000,
@@ -101,9 +99,9 @@ export default class Line extends React.Component {
                     ]
                 },
                 {
-                    name: '摩拜订单量',
+                    name: '摩拜Order Quantity',
                     type: 'line',
-                    stack: '总量',
+                    stack: 'Total Amount',
                     data: [
                         1000,
                         2000,
@@ -122,7 +120,7 @@ export default class Line extends React.Component {
     getOption3() {
         let option = {
             title: {
-                text: '用户骑行订单'
+                text: 'User Bike Rental Orders Over Time'
             },
             tooltip: {
                 trigger: 'axis'
@@ -131,13 +129,13 @@ export default class Line extends React.Component {
                 type:'category',
                 boundaryGap: false,
                 data: [
-                    '周一',
-                    '周二',
-                    '周三',
-                    '周四',
-                    '周五',
-                    '周六',
-                    '周日'
+                    'Monday',
+                    'Tuesday',
+                    'Wednesday',
+                    'Thursay',
+                    'Friday',
+                    'Saturday',
+                    'Sunday'
                 ]
             },
             yAxis: {
@@ -145,7 +143,7 @@ export default class Line extends React.Component {
             },
             series: [
                 {
-                    name: '订单量',
+                    name: 'Order Quantity',
                     type: 'line',
                     data: [
                         1000,
@@ -166,7 +164,7 @@ export default class Line extends React.Component {
     render() {
         return (
             <div style={{width:'100%'}}>
-                <Card title="折线图表之一">
+                <Card title="Line chart">
                     <ReactEcharts
                         option={this.getOption()}
                         theme="Imooc"
@@ -176,7 +174,7 @@ export default class Line extends React.Component {
                         height: 500
                     }}/>
                 </Card>
-                <Card title="折线图表之二" style={{marginTop:10}}>
+                <Card title="Line chart2" style={{marginTop:10}}>
                     <ReactEcharts
                         option={this.getOption2()}
                         theme="Imooc"
@@ -186,7 +184,7 @@ export default class Line extends React.Component {
                         height: 500
                     }}/>
                 </Card>
-                <Card title="折线图表之三" style={{marginTop:10}}>
+                <Card title="Line chart1" style={{marginTop:10}}>
                     <ReactEcharts
                         option={this.getOption3()}
                         theme="Imooc"

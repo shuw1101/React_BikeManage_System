@@ -70,28 +70,28 @@ export default class City extends React.Component{
     render(){
         const columns = [
             {
-                title:'城市ID',
+                title:'City ID',
                 dataIndex:'id'
             }, {
-                title: '城市名称',
+                title: 'City Name',
                 dataIndex: 'name'
             }, {
-                title: '用车模式',
+                title: 'Bike Modal',
                 dataIndex: 'mode',
                 render(mode){
-                    return mode ==1 ?'停车点':'禁停区';
+                    return mode ==1 ?'Part Lot':'invlid Lot';
                 }
             }, {
-                title: '营运模式',
+                title: 'Operation mode',
                 dataIndex: 'op_mode',
                 render(op_mode) {
-                    return op_mode == 1 ? '自营' : '加盟';
+                    return op_mode == 1 ? 'Office' : 'Client';
                 }
             }, {
-                title: '授权加盟商',
+                title: 'franchisee',
                 dataIndex: 'franchisee_name'
             }, {
-                title: '城市管理员',
+                title: 'City Admin',
                 dataIndex: 'city_admins',
                 render(arr){
                     return arr.map((item)=>{
@@ -99,14 +99,14 @@ export default class City extends React.Component{
                     }).join(',');
                 }
             }, {
-                title: '城市开通时间',
+                title: 'City Open Time',
                 dataIndex: 'open_time'
             }, {
-                title: '操作时间',
+                title: 'Last Update Time',
                 dataIndex: 'update_time',
                 render: Utils.formateDate
             }, {
-                title: '操作人',
+                title: 'Operator',
                 dataIndex: 'sys_user_name'
             }
         ]
@@ -116,7 +116,7 @@ export default class City extends React.Component{
                     <FilterForm />
                 </Card>
                 <Card style={{marginTop:10}}>
-                    <Button type="primary" onClick={this.handleOpenCity}>开通城市</Button>
+                    <Button type="primary" onClick={this.handleOpenCity}>Open City</Button>
                 </Card>
                 <div className="content-wrap">
                     <Table
@@ -127,7 +127,7 @@ export default class City extends React.Component{
                     />
                 </div>
                 <Modal 
-                    title="开通城市"
+                    title="Open City"
                     visible={this.state.isShowOpenCity}
                     onCancel={()=>{
                         this.setState({
@@ -148,52 +148,52 @@ class FilterForm extends React.Component{
     render(){
         return (
             <Form layout="inline">
-                <FormItem label="城市" name="city_id">
+                <FormItem label="City" name="city_id">
                     {
                         (
                             <Select
                                 style={{width:100}}
-                                placeholder="全部"
+                                placeholder="All"
                             >
-                                <Option value="">全部</Option>
-                                <Option value="1">北京市</Option>
-                                <Option value="2">天津市</Option>
-                                <Option value="3">深圳市</Option>
+                                <Option value="">All</Option>
+                                <Option value="1">Beijing</Option>
+                                <Option value="2">Tianjin</Option>
+                                <Option value="3">Shenzhen</Option>
                             </Select>
                         )
                     }
                 </FormItem>
-                <FormItem label="用车模式" name="mode">
+                <FormItem label="mode" name="mode">
                     {
                        (
                             <Select
                                 style={{ width: 120 }}
-                                placeholder="全部"
+                                placeholder="All"
                             >
-                                <Option value="">全部</Option>
-                                <Option value="1">指定停车点模式</Option>
-                                <Option value="2">禁停区模式</Option>
+                                <Option value="">All</Option>
+                                <Option value="1">valid</Option>
+                                <Option value="2">invalid</Option>
                             </Select>
                         )
                     }
                 </FormItem>
-                <FormItem label="营运模式"
+                <FormItem label="Operation mode"
                 name="op_mode"
                 >
                     {
                         (
                             <Select
                                 style={{ width: 80 }}
-                                placeholder="全部"
+                                placeholder="All"
                             >
-                                <Option value="">全部</Option>
-                                <Option value="1">自营</Option>
-                                <Option value="2">加盟</Option>
+                                <Option value="">All</Option>
+                                <Option value="1">Self</Option>
+                                <Option value="2">Client</Option>
                             </Select>
                         )
                     }
                 </FormItem>
-                <FormItem label="加盟商授权状态"
+                <FormItem label="Client Authentication Status"
                 name='auth_status'
                 
                 >
@@ -201,18 +201,18 @@ class FilterForm extends React.Component{
                      (
                             <Select
                                 style={{ width: 100 }}
-                                placeholder="全部"
+                                placeholder="All"
                             >
-                                <Option value="">全部</Option>
-                                <Option value="1">已授权</Option>
-                                <Option value="2">未授权</Option>
+                                <Option value="">All</Option>
+                                <Option value="1">valid</Option>
+                                <Option value="2">invalid</Option>
                             </Select>
                         )
                     }
                 </FormItem>
                 <FormItem>
-                    <Button type="primary" style={{margin:'0 20px'}}>查询</Button>
-                    <Button>重置</Button>
+                    <Button type="primary" style={{margin:'0 20px'}}>Search</Button>
+                    <Button>Reset</Button>
                 </FormItem>
             </Form>
         );
@@ -234,36 +234,36 @@ class OpenCityForm extends React.Component{
             <Form layout="horizontal">
                 <FormItem 
                 initialValue='1'
-                label="选择城市" {...formItemLayout}
+                label="Select City" {...formItemLayout}
                 
                 >
                 <Select style={{ width: 100 }}>
-                    <Option value="">全部</Option>
-                    <Option value="1">北京市</Option>
-                    <Option value="2">天津市</Option>
+                    <Option value="">All</Option>
+                    <Option value="1">Beijing</Option>
+                    <Option value="2">Tianjin</Option>
                 </Select>
                 </FormItem>
-                <FormItem label="营运模式" {...formItemLayout}
+                <FormItem label="operation mode" {...formItemLayout}
                 name="op_mode" initialValue='1'
                 
                 >
                     {
                         (
                             <Select style={{ width: 100 }}>
-                                <Option value="1">自营</Option>
-                                <Option value="2">加盟</Option>
+                                <Option value="1">Self</Option>
+                                <Option value="2">Client</Option>
                             </Select>
                         )
                     }
                 </FormItem>
-                <FormItem label="用车模式" {...formItemLayout}
+                <FormItem label="Bike Mode" {...formItemLayout}
                 initialValue= '1'
                 
                 >
                     {
                     <Select style={{ width: 100 }}>
-                        <Option value="1">指定停车点</Option>
-                        <Option value="2">禁停区</Option>
+                        <Option value="1">valid lot</Option>
+                        <Option value="2">invalid lot</Option>
                     </Select>
                 
                     }

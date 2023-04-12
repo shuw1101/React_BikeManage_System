@@ -10,20 +10,19 @@ export default class Order extends React.Component{
 
     map = {}
 
-    // 表单封装，通过构建表单对象，在BaseForm中进行统一渲染
     formList = [
         {
-            type: '城市'
+            type: 'city'
         }, {
-            type: '时间查询'
+            type: 'select time'
         }, {
             type: 'SELECT',
-            label: '订单状态',
+            label: 'Order Status',
             field: 'order_status',
-            placeholder: '全部',
+            placeholder: 'All',
             initialValue: '0',
             width: 150,
-            list: [{id: '0', name: '全部'}, {id: '1', name: '进行中'}, {id: '3', name: '行程结束'}]
+            list: [{id: '0', name: 'All'}, {id: '1', name: 'in-progress'}, {id: '3', name: 'completed'}]
         }
     ]
 
@@ -31,7 +30,7 @@ export default class Order extends React.Component{
         page:1
     }
 
-    // 列表请求
+    // send request for bike list
     requestList = ()=>{
         axios.ajax({
             url:'/map/bike_list',
@@ -50,7 +49,7 @@ export default class Order extends React.Component{
         })
     }
 
-    // 查询表单
+    
     handleFilterSubmit = (filterParams) => {
         this.params = filterParams;
         this.requestList();
@@ -60,7 +59,7 @@ export default class Order extends React.Component{
         this.requestList();
     }
 
-    // 渲染地图
+    
     renderMap = (res) => {
         let list = res.route_list;
         this.map = new window.BMap.Map("container", {enableMapClick: false});
@@ -72,7 +71,7 @@ export default class Order extends React.Component{
         this.map.centerAndZoom(endPoint, 11);
         // map.clearOverlays();
 
-        //添加起始图标
+       
         let startPointIcon = new window.BMap.Icon("/assets/start_point.png", new window.BMap.Size(36, 42), {
             imageSize: new window.BMap.Size(36, 42),
             anchor: new window.BMap.Size(18, 42)
@@ -94,7 +93,7 @@ export default class Order extends React.Component{
             let point = new window.BMap.Point(p[0], p[1]);
             routeList.push(point);
         })
-        // 行驶路线
+        
         var polyLine = new window.BMap.Polyline(routeList, {
             strokeColor: "#ef4136",
             strokeWeight: 3,
@@ -102,14 +101,14 @@ export default class Order extends React.Component{
         });
         this.map.addOverlay(polyLine);
 
-        // 服务区路线
+        
         let serviceList = res.service_list;
         let servicePointist = [];
         serviceList.forEach((item) => {
             let point = new window.BMap.Point(item.lon, item.lat);
             servicePointist.push(point);
         })
-        // 画线
+        
         var polyServiceLine = new window.BMap.Polyline(servicePointist, {
             strokeColor: "#ef4136",
             strokeWeight: 3,
@@ -117,7 +116,7 @@ export default class Order extends React.Component{
         });
         this.map.addOverlay(polyServiceLine);
 
-        // 添加地图中的自行车
+        
         let bikeList = res.bike_list;
         let bikeIcon = new window.BMap.Icon("/assets/bike.jpg", new window.BMap.Size(36, 42), {
             imageSize: new window.BMap.Size(36, 42),
@@ -130,21 +129,21 @@ export default class Order extends React.Component{
             this.map.addOverlay(bikeMarker);
         })
         
-        // 添加地图控件
+        
         this.addMapControl();
     };
 
-    // 添加地图控件
+    
     addMapControl = () => {
         let map = this.map;
-        // 左上角，添加比例尺
+        
         var top_right_control = new window.BMap.ScaleControl({anchor: window.BMAP_ANCHOR_TOP_RIGHT});
         var top_right_navigation = new window.BMap.NavigationControl({anchor: window.BMAP_ANCHOR_TOP_RIGHT});
-        //添加控件和比例尺
+        
         map.addControl(top_right_control);
         map.addControl(top_right_navigation);
         map.enableScrollWheelZoom(true);
-        // legend.addLegend(map);
+        
     };
 
     render(){
@@ -154,7 +153,7 @@ export default class Order extends React.Component{
                     <BaseForm formList={this.formList} filterSubmit={this.handleFilterSubmit}/>
                 </Card>
                 <Card style={{marginTop:10}}>
-                    <div>共{this.state.total_count}辆车</div>
+                    <div>Totally{this.state.total_count}bikes</div>
                     <div id="container" style={{height:500}}></div>
                 </Card>
             </div>

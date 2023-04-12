@@ -47,7 +47,7 @@ class Formlogin extends React.Component{
     render(){
         return (
             <div style={{width:'100%'}}>
-                <Card title="登录行内表单">
+                <Card title="inline form">
                     <Form layout="inline">
                         <FormItem>
                             <Input placeholder="username"/>
@@ -60,7 +60,7 @@ class Formlogin extends React.Component{
                         </FormItem>
                     </Form>
                 </Card>
-                <Card title="登录水平表单" style={{marginTop:10}}>
+                <Card title="horizontal form" style={{marginTop:10}}>
                     <Form style={{width:300}} onFinish={this.onFinish}>
                         <FormItem
                         name="username"
@@ -68,15 +68,15 @@ class Formlogin extends React.Component{
                         rules={[
                             {
                                 required:true,
-                                message:'用户名不能为空'
+                                message:'Username cannot be null'
                             },
                             {
                                 min:5,max:10,
-                                message:'长度不在范围内'
+                                message:'Username length is not in valid range'
                             },
                             {
                                 pattern:new RegExp('^\\w+$','g'),
-                                message:'用户名必须为字母或者数字'
+                                message:'Username must be either letters or digits'
                             }
                         ]}>
                         <Input prefix={<UserOutlined />} placeholder="username" />
